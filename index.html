@@ -32,15 +32,7 @@
 </head>
 <body class="bg-gray-50 font-sans antialiased transition-colors duration-300" id="app-root">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-    <script type="text/babel" data-plugins="transform-react-jsx">
-        // Suppress Babel in-browser transformer warning
-        const originalWarn = console.warn;
-        console.warn = (...args) => {
-            if (args[0]?.includes('You are using the in-browser Babel transformer')) return;
-            originalWarn.apply(console, args);
-        };
-
-        // For production, precompile scripts using Vite/Parcel: https://babeljs.io/docs/setup/
+    <script type="text/babel">
         document.addEventListener('DOMContentLoaded', () => {
             try {
                 const { create } = window.zustand;
