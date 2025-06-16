@@ -1,205 +1,1207 @@
+# GitHub-Ready Axis vs Allies Website
+
+Let me optimize the solution for GitHub Pages with all your requirements:
+
+## Steps to Implement:
+
+1. First, create a new GitHub repository named "axis-vs-allies"
+2. Use this complete index.html file (everything is contained in a single file)
+3. Enable GitHub Pages from your repository settings (Settings > Pages > Source: main branch)
+
+```html
 <!DOCTYPE html>
 <html lang="en">
-<!-- Head and styles sections remain the same as the previous response -->
 <head>
-    <!-- ... previous head content ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis vs Allies - World War II Strategy Board Game</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        nav {
+            background-color: #34495e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #e74c3c;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e74c3c;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            border: 3px solid #2c3e50;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 2rem 0;
+            background-color: #cde4ff;
+        }
+        
+        .game-map {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            z-index: 5;
+        }
+        
+        .map-key {
+            font-size: 0.9rem;
+        }
+        
+        .map-key div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border: 1px solid #333;
+        }
+        
+        .axis {
+            background-color: #e74c3c;
+        }
+        
+        .allies {
+            background-color: #3498db;
+        }
+        
+        .neutral {
+            background-color: #7f8c8d;
+        }
+        
+        .faction-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .faction {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faction-axis {
+            border-top: 5px solid #e74c3c;
+        }
+        
+        .faction-allies {
+            border-top: 5px solid #3498db;
+        }
+        
+        .faction-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .faction-countries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .faction-country {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .axis-country {
+            background-color: #ffeeee;
+            color: #c0392b;
+        }
+        
+        .allies-country {
+            background-color: #eef6fd;
+            color: #2980b9;
+        }
+        
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .unit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .unit-header {
+            padding: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+            background-color: #34495e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .unit-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            background-color: #f9f9f9;
+        }
+        
+        .unit-body {
+            padding: 1rem;
+            flex: 1;
+        }
+        
+        .unit-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .unit-stat-label {
+            font-weight: bold;
+        }
+        
+        .resources {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .resource {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource h3 {
+            color: #e74c3c;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .phases {
+            margin-top: 2rem;
+        }
+        
+        .phase-card {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .phase-header {
+            padding: 1rem;
+            background-color: #2c3e50;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .phase-number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .phase-body {
+            padding: 1rem;
+        }
+        
+        .phase-body ul {
+            list-style-position: inside;
+            margin: 1rem 0;
+        }
+        
+        .how-to-play-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .how-to-play-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+        }
+        
+        .tutorial-step {
+            margin-bottom: 2rem;
+        }
+        
+        .tutorial-step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #34495e;
+        }
+        
+        .setup-container {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .setup-item {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+        
+        .territory {
+            position: absolute;
+            border: 2px solid rgba(0, 0, 0, 0.4);
+            border-radius: 2px;
+            font-size: 9px;
+            text-align: center;
+            overflow: hidden;
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 0px 0px 2px #000;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .territory:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        
+        .territory-info {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 100;
+            max-width: 250px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .territory-name {
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .territory-details {
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-links {
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: #3498db;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .faction-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .units-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .setup-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .units-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 1rem;
+            }
+            
+            .how-to-play-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- ... previous body content ... -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Axis vs Allies</div>
+            <div class="tagline">The epic World War II strategy board game</div>
+        </div>
+    </header>
     
-    <script>
-        // Modal functionality
-        const howToPlayBtn = document.getElementById('how-to-play-btn');
-        const howToPlayModal = document.getElementById('how-to-play-modal');
-        const closeModal = document.getElementById('close-modal');
+    <nav>
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#map">Game Map</a></li>
+            <li><a href="#factions">Factions</a></li>
+            <li><a href="#units">Military Units</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#game-phases">Game Phases</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="overview">
+            <h2>Game Overview</h2>
+            <p>Axis vs Allies is a classic strategy board game that simulates the epic struggle of World War II. Players take control of the major powers of the war, making strategic decisions about military production, troop movements, and combat to achieve victory for their side.</p>
+            
+            <p>The game balances historical accuracy with engaging gameplay, offering both casual and serious players a chance to rewrite or relive the history of this global conflict. Will the Axis powers achieve world domination, or will the Allies prevail in defending freedom?</p>
+        </section>
         
-        howToPlayBtn.addEventListener('click', function() {
-            howToPlayModal.style.display = 'block';
-        });
-        
-        closeModal.addEventListener('click', function() {
-            howToPlayModal.style.display = 'none';
-        });
-        
-        window.addEventListener('click', function(event) {
-            if (event.target === howToPlayModal) {
-                howToPlayModal.style.display = 'none';
-            }
-        });
-        
-        // Territory hover functionality
-        const territories = document.querySelectorAll('.territory');
-        const territoryInfo = document.getElementById('territory-info');
-        const territoryName = document.querySelector('.territory-name');
-        const territoryIPC = document.getElementById('territory-ipc');
-        const territoryControl = document.getElementById('territory-control');
-        const territoryUnits = document.getElementById('territory-units');
-        
-        // Territory data
-        const territoryData = {
-            'ALASKA': {
-                ipc: 2,
-                control: 'United States',
-                units: '1 Infantry'
-            },
-            'WESTERN CANADA': {
-                ipc: 3,
-                control: 'United Kingdom',
-                units: '1 Infantry'
-            },
-            'EASTERN CANADA': {
-                ipc: 3,
-                control: 'United Kingdom',
-                units: '1 Infantry, 1 Fighter'
-            },
-            'WESTERN USA': {
-                ipc: 10,
-                control: 'United States',
-                units: '2 Infantry, 1 Tank, Industrial Complex'
-            },
-            'EASTERN USA': {
-                ipc: 20,
-                control: 'United States',
-                units: '2 Infantry, 1 Tank, 1 Fighter, 1 Bomber, Industrial Complex'
-            },
-            'MEXICO': {
-                ipc: 2,
-                control: 'United States',
-                units: '1 Infantry'
-            },
-            'VENEZUELA': {
-                ipc: 2,
-                control: 'Neutral',
-                units: 'None'
-            },
-            'BRAZIL': {
-                ipc: 3,
-                control: 'Neutral',
-                units: 'None'
-            },
-            'ARGENTINA': {
-                ipc: 2,
-                control: 'Neutral',
-                units: 'None'
-            },
-            'UK': {
-                ipc: 8,
-                control: 'United Kingdom',
-                units: '2 Infantry, 1 Tank, 1 Fighter, Industrial Complex'
-            },
-            'WESTERN EUROPE': {
-                ipc: 6,
-                control: 'Germany',
-                units: '3 Infantry, 1 Tank'
-            },
-            'GERMANY': {
-                ipc: 15,
-                control: 'Germany',
-                units: '4 Infantry, 2 Tank, 1 Fighter, 1 Bomber, Industrial Complex'
-            },
-            'SOUTHERN EUROPE': {
-                ipc: 5,
-                control: 'Germany',
-                units: '2 Infantry, 1 Tank'
-            },
-            'RUSSIA': {
-                ipc: 10,
-                control: 'Soviet Union',
-                units: '5 Infantry, 1 Tank, Industrial Complex'
-            },
-            'ALGERIA': {
-                ipc: 2,
-                control: 'Neutral',
-                units: 'None'
-            },
-            'CENTRAL AFRICA': {
-                ipc: 1,
-                control: 'Neutral',
-                units: 'None'
-            },
-            'SOUTH AFRICA': {
-                ipc: 3,
-                control: 'United Kingdom',
-                units: '1 Infantry'
-            },
-            'EGYPT': {
-                ipc: 3,
-                control: 'Germany',
-                units: '2 Infantry, 1 Tank'
-            },
-            'SIBERIA': {
-                ipc: 2,
-                control: 'Soviet Union',
-                units: '2 Infantry'
-            },
-            'KAZAKHSTAN': {
-                ipc: 2,
-                control: 'Soviet Union',
-                units: '1 Infantry'
-            },
-            'YAKUTSK': {
-                ipc: 1,
-                control: 'Soviet Union',
-                units: '1 Infantry'
-            },
-            'CHINA': {
-                ipc: 4,
-                control: 'Japan',
-                units: '3 Infantry, 1 Tank'
-            },
-            'JAPAN': {
-                ipc: 10,
-                control: 'Japan',
-                units: '3 Infantry, 1 Tank, 1 Fighter, 1 Bomber, Industrial Complex'
-            },
-            'INDIA': {
-                ipc: 6,
-                control: 'Japan',
-                units: '2 Infantry, 1 Tank'
-            },
-            'MIDDLE EAST': {
-                ipc: 2,
-                control: 'Neutral',
-                units: 'None'
-            },
-            'AUSTRALIA': {
-                ipc: 5,
-                control: 'United Kingdom',
-                units: '1 Infantry, 1 Fighter'
-            },
-            'INDONESIA': {
-                ipc: 3,
-                control: 'Neutral',
-                units: 'None'
-            }
-        };
-        
-        territories.forEach(territory => {
-            territory.addEventListener('mouseenter', function(event) {
-                const name = this.textContent.trim();
-                const data = territoryData[name];
-                
-                if (data) {
-                    territoryName.textContent = name;
-                    territoryIPC.textContent = data.ipc;
-                    territoryControl.textContent = data.control;
-                    territoryUnits.textContent = data.units;
+        <section id="map">
+            <h2>Game Map</h2>
+            <p>The Axis vs Allies game is played on a world map divided into territories and sea zones. Each territory has a strategic value and may contain industrial centers for producing new units.</p>
+            
+            <div class="map-container" style="height: 600px; position: relative;">
+                <!-- Base Map -->
+                <svg width="100%" height="100%" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+                    <rect width="100%" height="100%" fill="#cde4ff" />
                     
-                    territoryInfo.style.display = 'block';
-                    territoryInfo.style.left = (event.pageX + 10) + 'px';
-                    territoryInfo.style.top = (event.pageY - 100) + 'px';
-                }
-            });
+                    <!-- Continents: Basic shapes -->
+                    <!-- North America -->
+                    <path d="M150,50 L100,150 L120,220 L200,280 L250,200 L230,100 Z" fill="#b3a88b" stroke="#333" stroke-width="2" />
+                    <!-- South America -->
+                    <path d="M200,280 L180,350 L220,430 L260,400 L250,310 Z" fill="#c7ba9b" stroke="#333" stroke-width="2" />
+                    <!-- Europe -->
+                    <path d="M420,100 L380,140 L400,180 L460,210 L500,150 L470,110 Z" fill="#b8b094" stroke="#333" stroke-width="2" />
+                    <!-- Africa -->
+                    <path d="M400,180 L380,300 L450,380 L520,350 L550,250 L490,210 Z" fill="#cfc29f" stroke="#333" stroke-width="2" />
+                    <!-- Asia -->
+                    <path d="M500,150 L490,210 L550,250 L650,260 L750,220 L800,100 L700,80 L600,110 Z" fill="#c4b99c" stroke="#333" stroke-width="2" />
+                    <!-- Australia -->
+                    <path d="M750,320 L730,380 L820,390 L850,340 Z" fill="#d5c7a1" stroke="#333" stroke-width="2" />
+                    
+                    <!-- Sea Zones Labeling -->
+                    <text x="350" y="120" font-size="10" fill="#003366">North Atlantic</text>
+                    <text x="350" y="250" font-size="10" fill="#003366">South Atlantic</text>
+                    <text x="650" y="150" font-size="10" fill="#003366">North Pacific</text>
+                    <text x="650" y="320" font-size="10" fill="#003366">South Pacific</text>
+                    <text x="450" y="160" font-size="10" fill="#003366">Mediterranean</text>
+                    <text x="600" y="200" font-size="10" fill="#003366">Indian Ocean</text>
+                </svg>
+                
+                <!-- Map Territories Overlay -->
+                <!-- North America -->
+                <div class="territory" style="top: 80px; left: 150px; width: 60px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    ALASKA
+                </div>
+                <div class="territory" style="top: 100px; left: 220px; width: 70px; height: 60px; background: rgba(52, 152, 219, 0.6);">
+                    WESTERN CANADA
+                </div>
+                <div class="territory" style="top: 150px; left: 270px; width: 70px; height: 60px; background: rgba(52, 152, 219, 0.6);">
+                    EASTERN CANADA
+                </div>
+                <div class="territory" style="top: 170px; left: 200px; width: 60px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    WESTERN USA
+                </div>
+                <div class="territory" style="top: 200px; left: 270px; width: 60px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    EASTERN USA
+                </div>
+                <div class="territory" style="top: 250px; left: 240px; width: 60px; height: 40px; background: rgba(52, 152, 219, 0.6);">
+                    MEXICO
+                </div>
+                
+                <!-- South America -->
+                <div class="territory" style="top: 310px; left: 220px; width: 60px; height: 50px; background: rgba(127, 140, 141, 0.6);">
+                    VENEZUELA
+                </div>
+                <div class="territory" style="top: 350px; left: 250px; width: 60px; height: 50px; background: rgba(127, 140, 141, 0.6);">
+                    BRAZIL
+                </div>
+                <div class="territory" style="top: 390px; left: 220px; width: 60px; height: 40px; background: rgba(127, 140, 141, 0.6);">
+                    ARGENTINA
+                </div>
+                
+                <!-- Europe -->
+                <div class="territory" style="top: 120px; left: 420px; width: 50px; height: 40px; background: rgba(52, 152, 219, 0.6);">
+                    UK
+                </div>
+                <div class="territory" style="top: 150px; left: 450px; width: 50px; height: 40px; background: rgba(231, 76, 60, 0.6);">
+                    WESTERN EUROPE
+                </div>
+                <div class="territory" style="top: 130px; left: 500px; width: 50px; height: 40px; background: rgba(231, 76, 60, 0.6);">
+                    GERMANY
+                </div>
+                <div class="territory" style="top: 180px; left: 500px; width: 50px; height: 40px; background: rgba(231, 76, 60, 0.6);">
+                    SOUTHERN EUROPE
+                </div>
+                <div class="territory" style="top: 150px; left: 550px; width: 60px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    RUSSIA
+                </div>
+                
+                <!-- Africa -->
+                <div class="territory" style="top: 230px; left: 430px; width: 60px; height: 50px; background: rgba(127, 140, 141, 0.6);">
+                    ALGERIA
+                </div>
+                <div class="territory" style="top: 290px; left: 470px; width: 60px; height: 50px; background: rgba(127, 140, 141, 0.6);">
+                    CENTRAL AFRICA
+                </div>
+                <div class="territory" style="top: 320px; left: 530px; width: 60px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    SOUTH AFRICA
+                </div>
+                <div class="territory" style="top: 220px; left: 520px; width: 60px; height: 40px; background: rgba(231, 76, 60, 0.6);">
+                    EGYPT
+                </div>
+                
+                <!-- Asia -->
+                <div class="territory" style="top: 130px; left: 610px; width: 70px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    SIBERIA
+                </div>
+                <div class="territory" style="top: 190px; left: 590px; width: 60px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    KAZAKHSTAN
+                </div>
+                <div class="territory" style="top: 160px; left: 680px; width: 60px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    YAKUTSK
+                </div>
+                <div class="territory" style="top: 210px; left: 660px; width: 60px; height: 50px; background: rgba(231, 76, 60, 0.6);">
+                    CHINA
+                </div>
+                <div class="territory" style="top: 180px; left: 750px; width: 60px; height: 50px; background: rgba(231, 76, 60, 0.6);">
+                    JAPAN
+                </div>
+                <div class="territory" style="top: 250px; left: 700px; width: 60px; height: 50px; background: rgba(231, 76, 60, 0.6);">
+                    INDIA
+                </div>
+                <div class="territory" style="top: 280px; left: 650px; width: 60px; height: 40px; background: rgba(127, 140, 141, 0.6);">
+                    MIDDLE EAST
+                </div>
+                
+                <!-- Australia -->
+                <div class="territory" style="top: 330px; left: 780px; width: 70px; height: 50px; background: rgba(52, 152, 219, 0.6);">
+                    AUSTRALIA
+                </div>
+                <div class="territory" style="top: 300px; left: 730px; width: 60px; height: 40px; background: rgba(127, 140, 141, 0.6);">
+                    INDONESIA
+                </div>
+                
+                <div class="map-overlay">
+                    <div class="map-key">
+                        <div><div class="color-box axis"></div> Axis Territory</div>
+                        <div><div class="color-box allies"></div> Allied Territory</div>
+                        <div><div class="color-box neutral"></div> Neutral Territory</div>
+                    </div>
+                </div>
+                
+                <!-- Territory Info Popup (initially hidden) -->
+                <div class="territory-info" id="territory-info">
+                    <div class="territory-name">Territory Name</div>
+                    <div class="territory-details">
+                        <div>IPC Value: <span id="territory-ipc">0</span></div>
+                        <div>Controlled by: <span id="territory-control">None</span></div>
+                        <div>Units: <span id="territory-units">None</span></div>
+                    </div>
+                </div>
+            </div>
             
-            territory.addEventListener('mousemove', function(event) {
-                territoryInfo.style.left = (event.pageX + 10) + 'px';
-                territoryInfo.style.top = (event.pageY - 100) + 'px';
-            });
+            <p>The map features over 30 territories across six continents, plus numerous sea zones that connect them. Control of strategic waterways and resource-rich territories is essential for victory.</p>
+        </section>
+        
+        <section id="factions">
+            <h2>Factions</h2>
+            <p>Players command the major world powers embroiled in World War II, each with unique starting positions, resources, and strategic advantages.</p>
             
-            territory.addEventListener('mouseleave', function() {
-                territoryInfo.style.display = 'none';
-            });
-        });
-    </script>
-</body>
-</html>
+            <div class="faction-grid">
+                <div class="faction faction-axis">
+                    <div class="faction-title">Axis Powers</div>
+                    <div class="faction-countries">
+                        <span class="faction-country axis-country">Germany</span>
+                        <span class="faction-country axis-country">Japan</span>
+                        <span class="faction-country axis-country">Italy</span>
+                    </div>
+                    <p>The Axis powers begin the game with significant territorial control in Europe and Asia but face enemies on multiple fronts. They must coordinate their strategies to prevent being overwhelmed.</p>
+                    <h3>Strengths:</h3>
+                    <ul>
+                        <li>Powerful initial land armies</li>
+                        <li>Strong defensive positions</li>
+                        <li>Technologically advanced units</li>
+                    </ul>
+                    <h3>Strategies:</h3>
+                    <ul>
+                        <li>Quick expansion to secure additional resources</li>
+                        <li>Prevent Allied cooperation by controlling key sea zones</li>
+                        <li>Develop overwhelming force on one front before pivoting to another</li>
+                    </ul>
+                </div>
+                
+                <div class="faction faction-allies">
+                    <div class="faction-title">Allied Powers</div>
+                    <div class="faction-countries">
+                        <span class="faction-country allies-country">United States</span>
+                        <span class="faction-country allies-country">United Kingdom</span>
+                        <span class="faction-country allies-country">Soviet Union</span>
+                    </div>
+                    <p>The Allied powers must defend their territories while building up their industrial capacity. They typically start with greater industrial potential but are strategically disadvantaged.</p>
+                    <h3>Strengths:</h3>
+                    <ul>
+                        <li>Superior industrial production capacity</li>
+                        <li>Stronger naval forces</li>
+                        <li>Ability to coordinate multi-front operations</li>
+                    </ul>
+                    <h3>Strategies:</h3>
+                    <ul>
+                        <li>Protect industrial centers to maximize production</li>
+                        <li>Use naval superiority to control supply lines</li>
+                        <li>Gradually increase pressure on multiple fronts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="units">
+            <h2>Military Units</h2>
+            <p>Each faction commands various military units with different capabilities, costs, and strategic uses.</p>
+            
+            <div class="units-grid">
+                <div class="unit-card">
+                    <div class="unit-header">Infantry</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><path d=\'M100 20 L95 40 L105 40 Z\' fill=\'%23555\'/><rect x=\'95\' y=\'40\' width=\'10\' height=\'20\' fill=\'%23555\'/><line x1=\'95\' y1=\'50\' x2=\'85\' y2=\'70\' stroke=\'%23555\' stroke-width=\'3\'/><line x1=\'105\' y1=\'50\' x2=\'115\' y2=\'70\' stroke=\'%23555\' stroke-width=\'3\'/><line x1=\'95\' y1=\'60\' x2=\'85\' y2=\'90\' stroke=\'%23555\' stroke-width=\'3\'/><line x1=\'105\' y1=\'60\' x2=\'115\' y2=\'90\' stroke=\'%23555\' stroke-width=\'3\'/><rect x=\'93\' y=\'38\' width=\'14\' height=\'5\' fill=\'%23333\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>3 IPCs</span>
+                        </div>
+                        <p>Basic land unit. Effective in defense and essential for taking and holding territories.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Tank</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><rect x=\'55\' y=\'60\' width=\'90\' height=\'30\' fill=\'%23555\'/><rect x=\'50\' y=\'70\' width=\'100\' height=\'20\' rx=\'5\' fill=\'%23555\'/><rect x=\'75\' y=\'45\' width=\'50\' height=\'15\' fill=\'%23555\'/><ellipse cx=\'70\' cy=\'90\' rx=\'15\' ry=\'15\' fill=\'%23333\'/><ellipse cx=\'90\' cy=\'90\' rx=\'15\' ry=\'15\' fill=\'%23333\'/><ellipse cx=\'110\' cy=\'90\' rx=\'15\' ry=\'15\' fill=\'%23333\'/><ellipse cx=\'130\' cy=\'90\' rx=\'15\' ry=\'15\' fill=\'%23333\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>3</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>6 IPCs</span>
+                        </div>
+                        <p>Powerful offensive land unit with higher mobility. Essential for blitzkrieg tactics.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Fighter</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><path d=\'M100 30 L130 60 L120 70 L100 60 L80 70 L70 60 Z\' fill=\'%23555\'/><path d=\'M95 60 L95 90 L105 90 L105 60 Z\' fill=\'%23555\'/><path d=\'M85 70 L115 70 L110 80 L90 80 Z\' fill=\'%23555\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>3</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>4</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>4</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>10 IPCs</span>
+                        </div>
+                        <p>Fast air unit with strong attack and defense capabilities. Can base on aircraft carriers.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Bomber</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><path d=\'M100 40 L140 60 L130 70 L100 65 L70 70 L60 60 Z\' fill=\'%23555\'/><path d=\'M90 65 L90 85 L110 85 L110 65 Z\' fill=\'%23555\'/><path d=\'M70 50 L130 50 L125 60 L75 60 Z\' fill=\'%23555\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>4</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>6</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>12 IPCs</span>
+                        </div>
+                        <p>Strategic air unit capable of long-range strikes. Can also conduct strategic bombing.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Battleship</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><path d=\'M40 80 L160 80 L150 100 L50 100 Z\' fill=\'%23555\'/><rect x=\'70\' y=\'60\' width=\'60\' height=\'20\' fill=\'%23555\'/><rect x=\'90\' y=\'40\' width=\'20\' height=\'20\' fill=\'%23555\'/><rect x=\'70\' y=\'70\' width=\'10\' height=\'10\' fill=\'%23333\'/><rect x=\'120\' y=\'70\' width=\'10\' height=\'10\' fill=\'%23333\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>4</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>4</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>20 IPCs</span>
+                        </div>
+                        <p>Powerful naval unit that can take two hits before sinking. Dominates sea zones.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Aircraft Carrier</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><path d=\'M40 80 L160 80 L155 100 L45 100 Z\' fill=\'%23555\'/><rect x=\'50\' y=\'60\' width=\'100\' height=\'20\' fill=\'%23555\'/><line x1=\'60\' y1=\'60\' x2=\'60\' y2=\'80\' stroke=\'%23333\' stroke-width=\'2\'/><line x1=\'80\' y1=\'60\' x2=\'80\' y2=\'80\' stroke=\'%23333\' stroke-width=\'2\'/><line x1=\'100\' y1=\'60\' x2=\'100\' y2=\'80\' stroke=\'%23333\' stroke-width=\'2\'/><line x1=\'120\' y1=\'60\' x2=\'120\' y2=\'80\' stroke=\'%23333\' stroke-width=\'2\'/><line x1=\'140\' y1=\'60\' x2=\'140\' y2=\'80\' stroke=\'%23333\' stroke-width=\'2\'/><path d=\'M110 50 L120 60 L100 55 Z\' fill=\'%23555\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>14 IPCs</span>
+                        </div>
+                        <p>Naval unit that can transport and launch fighter aircraft. Extends air power range.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Submarine</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><ellipse cx=\'100\' cy=\'80\' rx=\'60\' ry=\'15\' fill=\'%23555\'/><rect x=\'95\' y=\'65\' width=\'10\' height=\'15\' fill=\'%23555\'/><rect x=\'155\' y=\'75\' width=\'10\' height=\'10\' fill=\'%23555\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>8 IPCs</span>
+                        </div>
+                        <p>Stealthy naval unit that can surprise attack and bypass enemy ships.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Transport</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><path d=\'M50 80 L150 80 L140 100 L60 100 Z\' fill=\'%23555\'/><rect x=\'70\' y=\'60\' width=\'60\' height=\'20\' fill=\'%23555\'/><rect x=\'85\' y=\'50\' width=\'15\' height=\'10\' fill=\'%23555\'/><rect x=\'105\' y=\'50\' width=\'15\' height=\'10\' fill=\'%23555\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>0</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>0</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>7 IPCs</span>
+                        </div>
+                        <p>Naval unit that can transport land units across sea zones. Critical for invasions.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Artillery</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><rect x=\'80\' y=\'60\' width=\'40\' height=\'10\' fill=\'%23555\'/><rect x=\'90\' y=\'70\' width=\'20\' height=\'20\' fill=\'%23555\'/><line x1=\'80\' y1=\'90\' x2=\'120\' y2=\'90\' stroke=\'%23555\' stroke-width=\'4\'/><ellipse cx=\'85\' cy=\'95\' rx=\'7\' ry=\'7\' fill=\'%23333\'/><ellipse cx=\'115\' cy=\'95\' rx=\'7\' ry=\'7\' fill=\'%23333\'/><path d=\'M100 60 L100 40 L110 30\' stroke=\'%23555\' stroke-width=\'4\' fill=\'none\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>4 IPCs</span>
+                        </div>
+                        <p>Support land unit that boosts infantry attacks. Cost-effective for offensive operations.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Destroyer</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><path d=\'M60 85 L140 85 L130 100 L70 100 Z\' fill=\'%23555\'/><rect x=\'80\' y=\'65\' width=\'40\' height=\'20\' fill=\'%23555\'/><rect x=\'90\' y=\'55\' width=\'20\' height=\'10\' fill=\'%23555\'/><rect x=\'95\' y=\'45\' width=\'10\' height=\'10\' fill=\'%23555\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>2</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>8 IPCs</span>
+                        </div>
+                        <p>Anti-submarine naval unit. Prevents submarines from using their special abilities.</p>
+                    </div>
+                </div>
+                
+                <div class="unit-card">
+                    <div class="unit-header">Anti-Aircraft Gun</div>
+                    <div class="unit-image" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'120\' viewBox=\'0 0 200 120\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><rect x=\'85\' y=\'80\' width=\'30\' height=\'20\' fill=\'%23555\'/><line x1=\'100\' y1=\'80\' x2=\'100\' y2=\'40\' stroke=\'%23555\' stroke-width=\'5\'/><line x1=\'100\' y1=\'45\' x2=\'115\' y2=\'35\' stroke=\'%23555\' stroke-width=\'5\'/><circle cx=\'85\' cy=\'100\' r=\'5\' fill=\'%23333\'/><circle cx=\'115\' cy=\'100\' r=\'5\' fill=\'%23333\'/></svg>'); background-size: cover;"></div>
+                    <div class="unit-body">
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Attack:</span>
+                            <span>0</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Defense:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Move:</span>
+                            <span>1</span>
+                        </div>
+                        <div class="unit-stat">
+                            <span class="unit-stat-label">Cost:</span>
+                            <span>5 IPCs</span>
+                        </div>
+                        <p>Defensive unit that fires at enemy aircraft before regular combat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="resources">
+            <h2>Game Resources</h2>
+            <p>Resources and industrial capacity play a crucial role in the game strategy.</p>
+            
+            <div class="resources">
+                <div class="resource">
+                    <h3>Industrial Production Credits (IPCs)</h3>
+                    <p>The primary currency in Axis vs Allies. Used to purchase new military units and develop technologies.</p>
+                    <p>Each territory contributes a specific IPC value to the controlling nation's economy each turn.</p>
+                    <p>High-value territories include:</p>
+                    <ul>
+                        <li>Eastern United States (20 IPCs)</li>
+                        <li>Western United States (10 IPCs)</li>
+                        <li>United Kingdom (8 IPCs)</li>
+                        <li>Germany (15 IPCs)</li>
+                        <li>Russia (10 IPCs)</li>
+                        <li>Japan (10 IPCs)</li>
+                        <li>India (6 IPCs)</li>
+                    </ul>
+                </div>
+                
+                <div class="resource">
+                    <h3>Industrial Complexes</h3>
+                    <p>Facilities that allow the production of new military units in a territory.</p>
+                    <p>Strategic targets that should be both protected and targeted during the game.</p>
+                    <p>Starting industrial complexes are located in:</p>
+                    <ul>
+                        <li>Eastern United States</li>
+                        <li>Western United States</li>
+                        <li>United Kingdom</li>
+                        <li>Germany</li>
+                        <li>Russia</li>
+                        <li>Japan</li>
+                    </ul>
+                </div>
+                
+                <div class="resource">
+                    <h3>Strategic Territories</h3>
+                    <p>Territories with high IPC values or strategic location are critical for success.</p>
+                    <p>Chokepoints and important regions include:</p>
+                    <ul>
+                        <li>Egypt - Gateway between Africa and Middle East</li>
+                        <li>Alaska - Connection between Asia and North America</li>
+                        <li>India - High-value Asian territory</li>
+                        <li>Western Europe - Key battleground</li>
+                        <li>Siberia - Buffer zone between Russia and Japan</li>
+                        <li>South Africa - Strategic naval positioning</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="game-phases">
+            <h2>Game Phases</h2>
+            <p>Axis vs Allies is played in sequential turns, with each nation completing all phases before the next nation's turn.</p>
+            
+            <div class="phases">
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">1</div>
+                        Purchase Units
+                    </div>
+                    <div class="phase-body">
+                        <p>During this phase, the active player uses IPCs to purchase new military units and technologies.</p>
+                        <ul>
+                            <li>Units can only be placed in territories with industrial complexes.</li>
+                            <li>The number of units produced cannot exceed the IPC value of the territory with the industrial complex.</li>
+                            <li>Purchased units are set aside until the Place New Units phase.</li>
+                            <li>Strategic planning is crucial - decide between many cheap units or fewer powerful ones.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">2</div>
+                        Combat Movement
+                    </div>
+                    <div class="phase-body">
+                        <p>Move units into territories or sea zones where you intend to initiate combat.</p>
+                        <ul>
+                            <li>Units can move up to their movement allowance.</li>
+                            <li>Land units cannot move through enemy territories.</li>
+                            <li>Aircraft have extended range but must land in friendly territory or on a carrier.</li>
+                            <li>Strategic choices include concentrated attacks or multi-front assaults.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">3</div>
+                        Combat Resolution
+                    </div>
+                    <div class="phase-body">
+                        <p>Resolve battles one by one in any order the attacking player chooses.</p>
+                        <ul>
+                            <li>Each combat round consists of an attacker roll followed by a defender roll.</li>
+                            <li>Units score hits when their roll is less than or equal to their attack/defense value.</li>
+                            <li>The attacker decides which defending units are eliminated, then the defender does the same for attacking units.</li>
+                            <li>Combat continues until one side is eliminated or the attacker decides to retreat.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">4</div>
+                        Non-Combat Movement
+                    </div>
+                    <div class="phase-body">
+                        <p>Move remaining units that did not participate in combat or retreated.</p>
+                        <ul>
+                            <li>Reinforce vulnerable territories.</li>
+                            <li>Reposition aircraft that participated in combat.</li>
+                            <li>Consolidate forces for future operations.</li>
+                            <li>Move ships to establish defensive lines or prepare for next turn's assaults.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">5</div>
+                        Place New Units
+                    </div>
+                    <div class="phase-body">
+                        <p>Place units purchased at the beginning of the turn.</p>
+                        <ul>
+                            <li>New land and air units must be placed in territories containing industrial complexes.</li>
+                            <li>New naval units must be placed in sea zones adjacent to territories containing industrial complexes.</li>
+                            <li>Placed units cannot participate in combat until your next turn.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">6</div>
+                        Collect Income
+                    </div>
+                    <div class="phase-body">
+                        <p>Collect IPCs based on the total value of territories you control.</p>
+                        <ul>
+                            <li>Each territory has a specific IPC value that represents its economic worth.</li>
+                            <li>Your national production includes all territories under your control.</li>
+                            <li>This income will be used for purchases in your next turn.</li>
+                            <li>Strategic bombing raids by enemies can reduce the amount of income collected.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <button class="how-to-play-btn" id="how-to-play-btn">How To Play</button>
+    
+    <div class="modal" id="how-to-play-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2 class="modal-title">How To Play Axis vs Allies</h2>
+            
+            <div class="tutorial-step">
+                <h3>Game Setup</h3>
+                <p>Before starting the game, you'll need to set up the board according to the historical starting positions of World War II.</p>
+                
+                <div class="setup-container">
+                    <div class="setup-item">
+                        <h4>1. Distribute Units</h4>
+                        <p>Place the starting units for each nation on their corresponding territories as indicated in the setup chart.</p>
+                    </div>
+                    <div class="setup-item">
+                        <h4>2. Distribute IPCs</h4>
+                        <p>Give each player their starting IPCs based on the total value of their controlled territories.</p>
+                    </div>
+                </div>
+                
+                <p>The turn order is: Soviet Union, Germany, United Kingdom, Japan, United States.</p>
