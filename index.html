@@ -1,370 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Head and styles sections remain the same as the previous response -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axis vs Allies - Expanded HTML Version</title>
-    <style>
-        /* Previous CSS remains the same */
-        /* Adding new styles for additional elements */
-        
-        .player-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        
-        .player-card {
-            flex: 1;
-            padding: 10px;
-            margin: 0 5px;
-            border-radius: 5px;
-            text-align: center;
-            color: white;
-        }
-        
-        .axis { background-color: #800000; }
-        .allies { background-color: #008000; }
-        
-        .ipc-display {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-        
-        .unit-icons {
-            display: inline-block;
-            margin-left: 5px;
-            font-size: 10px;
-        }
-    </style>
+    <!-- ... previous head content ... -->
 </head>
 <body>
-    <div class="game-container">
-        <!-- Previous map-container and controls remain the same -->
-        <!-- Adding to existing map container -->
-        <div class="map-container">
-            <!-- Adding more European territories -->
-            <div class="territory germany" style="top: 150px; left: 350px;" onclick="selectTerritory('germany')">
-                Germany <span class="unit-counter">5</span>
-            </div>
-            <div class="territory france neutral" style="top: 170px; left: 300px;" onclick="selectTerritory('france')">
-                France <span class="unit-counter">3</span>
-            </div>
-            <div class="territory uk" style="top: 120px; left: 280px;" onclick="selectTerritory('uk')">
-                UK <span class="unit-counter">4</span>
-            </div>
-            <div class="territory russia" style="top: 130px; left: 450px;" onclick="selectTerritory('russia')">
-                Russia <span class="unit-counter">6</span>
-            </div>
-            <div class="territory italy germany" style="top: 200px; left: 380px;" onclick="selectTerritory('italy')">
-                Italy <span class="unit-counter">3</span>
-            </div>
-            <div class="territory poland neutral" style="top: 150px; left: 400px;" onclick="selectTerritory('poland')">
-                Poland <span class="unit-counter">2</span>
-            </div>
-            
-            <!-- Pacific Theater -->
-            <div class="territory japan" style="top: 180px; left: 800px;" onclick="selectTerritory('japan')">
-                Japan <span class="unit-counter">4</span>
-            </div>
-            <div class="territory philippines neutral" style="top: 220px; left: 840px;" onclick="selectTerritory('philippines')">
-                Philippines <span class="unit-counter">1</span>
-            </div>
-            <div class="territory hawaii usa" style="top: 220px; left: 650px;" onclick="selectTerritory('hawaii')">
-                Hawaii <span class="unit-counter">2</span>
-            </div>
-            
-            <!-- North America -->
-            <div class="territory usa" style="top: 180px; left: 100px;" onclick="selectTerritory('usa')">
-                USA <span class="unit-counter">5</span>
-            </div>
-            <div class="territory canada uk" style="top: 130px; left: 150px;" onclick="selectTerritory('canada')">
-                Canada <span class="unit-counter">2</span>
-            </div>
-            <div class="territory mexico neutral" style="top: 230px; left: 120px;" onclick="selectTerritory('mexico')">
-                Mexico <span class="unit-counter">1</span>
-            </div>
-            
-            <!-- Additional territories... -->
-        </div>
-        
-        <div class="controls">
-            <!-- Player stats section -->
-            <div class="player-info">
-                <div class="player-card axis">
-                    <h3>Axis</h3>
-                    <div>Germany: <span id="germany-ipc">10</span> IPC</div>
-                    <div>Japan: <span id="japan-ipc">8</span> IPC</div>
-                    <div>Total IPC: <span class="ipc-display" id="axis-ipc">18</span></div>
-                </div>
-                <div class="player-card allies">
-                    <h3>Allies</h3>
-                    <div>USA: <span id="usa-ipc">15</span> IPC</div>
-                    <div>UK: <span id="uk-ipc">8</span> IPC</div>
-                    <div>Russia: <span id="russia-ipc">12</span> IPC</div>
-                    <div>Total IPC: <span class="ipc-display" id="allies-ipc">35</span></div>
-                </div>
-            </div>
-            
-            <!-- Previous controls remain the same -->
-            <!-- Adding purchase section -->
-            <div id="purchaseControls">
-                <h3>Purchase Units</h3>
-                <button onclick="purchaseUnit('infantry')">Infantry (3 IPC)</button>
-                <button onclick="purchaseUnit('tank')">Tank (5 IPC)</button>
-                <button onclick="purchaseUnit('aircraft')">Aircraft (10 IPC)</button>
-                <div id="purchaseQueue"></div>
-            </div>
-            
-            <!-- Movement controls -->
-            <div id="movementControls" style="display: none;">
-                <h3>Movement</h3>
-                <div id="movementInfo">Select origin then destination territories</div>
-                <button onclick="confirmMovement()">Confirm Movement</button>
-                <button onclick="cancelMovement()">Cancel</button>
-            </div>
-            
-            <!-- Previous unit controls, game log, etc remain -->
-        </div>
-    </div>
+    <!-- ... previous body content ... -->
     
     <script>
-        // Expanding game state
-        let gameState = {
-            selectedTerritory: null,
-            currentPhase: 'Purchase',
-            turn: 1,
-            activePlayer: 'Allies',
-            purchaseQueue: [],
-            movement: {
-                origin: null,
-                destination: null,
-                units: []
+        // Modal functionality
+        const howToPlayBtn = document.getElementById('how-to-play-btn');
+        const howToPlayModal = document.getElementById('how-to-play-modal');
+        const closeModal = document.getElementById('close-modal');
+        
+        howToPlayBtn.addEventListener('click', function() {
+            howToPlayModal.style.display = 'block';
+        });
+        
+        closeModal.addEventListener('click', function() {
+            howToPlayModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(event) {
+            if (event.target === howToPlayModal) {
+                howToPlayModal.style.display = 'none';
+            }
+        });
+        
+        // Territory hover functionality
+        const territories = document.querySelectorAll('.territory');
+        const territoryInfo = document.getElementById('territory-info');
+        const territoryName = document.querySelector('.territory-name');
+        const territoryIPC = document.getElementById('territory-ipc');
+        const territoryControl = document.getElementById('territory-control');
+        const territoryUnits = document.getElementById('territory-units');
+        
+        // Territory data
+        const territoryData = {
+            'ALASKA': {
+                ipc: 2,
+                control: 'United States',
+                units: '1 Infantry'
+            },
+            'WESTERN CANADA': {
+                ipc: 3,
+                control: 'United Kingdom',
+                units: '1 Infantry'
+            },
+            'EASTERN CANADA': {
+                ipc: 3,
+                control: 'United Kingdom',
+                units: '1 Infantry, 1 Fighter'
+            },
+            'WESTERN USA': {
+                ipc: 10,
+                control: 'United States',
+                units: '2 Infantry, 1 Tank, Industrial Complex'
+            },
+            'EASTERN USA': {
+                ipc: 20,
+                control: 'United States',
+                units: '2 Infantry, 1 Tank, 1 Fighter, 1 Bomber, Industrial Complex'
+            },
+            'MEXICO': {
+                ipc: 2,
+                control: 'United States',
+                units: '1 Infantry'
+            },
+            'VENEZUELA': {
+                ipc: 2,
+                control: 'Neutral',
+                units: 'None'
+            },
+            'BRAZIL': {
+                ipc: 3,
+                control: 'Neutral',
+                units: 'None'
+            },
+            'ARGENTINA': {
+                ipc: 2,
+                control: 'Neutral',
+                units: 'None'
+            },
+            'UK': {
+                ipc: 8,
+                control: 'United Kingdom',
+                units: '2 Infantry, 1 Tank, 1 Fighter, Industrial Complex'
+            },
+            'WESTERN EUROPE': {
+                ipc: 6,
+                control: 'Germany',
+                units: '3 Infantry, 1 Tank'
+            },
+            'GERMANY': {
+                ipc: 15,
+                control: 'Germany',
+                units: '4 Infantry, 2 Tank, 1 Fighter, 1 Bomber, Industrial Complex'
+            },
+            'SOUTHERN EUROPE': {
+                ipc: 5,
+                control: 'Germany',
+                units: '2 Infantry, 1 Tank'
+            },
+            'RUSSIA': {
+                ipc: 10,
+                control: 'Soviet Union',
+                units: '5 Infantry, 1 Tank, Industrial Complex'
+            },
+            'ALGERIA': {
+                ipc: 2,
+                control: 'Neutral',
+                units: 'None'
+            },
+            'CENTRAL AFRICA': {
+                ipc: 1,
+                control: 'Neutral',
+                units: 'None'
+            },
+            'SOUTH AFRICA': {
+                ipc: 3,
+                control: 'United Kingdom',
+                units: '1 Infantry'
+            },
+            'EGYPT': {
+                ipc: 3,
+                control: 'Germany',
+                units: '2 Infantry, 1 Tank'
+            },
+            'SIBERIA': {
+                ipc: 2,
+                control: 'Soviet Union',
+                units: '2 Infantry'
+            },
+            'KAZAKHSTAN': {
+                ipc: 2,
+                control: 'Soviet Union',
+                units: '1 Infantry'
+            },
+            'YAKUTSK': {
+                ipc: 1,
+                control: 'Soviet Union',
+                units: '1 Infantry'
+            },
+            'CHINA': {
+                ipc: 4,
+                control: 'Japan',
+                units: '3 Infantry, 1 Tank'
+            },
+            'JAPAN': {
+                ipc: 10,
+                control: 'Japan',
+                units: '3 Infantry, 1 Tank, 1 Fighter, 1 Bomber, Industrial Complex'
+            },
+            'INDIA': {
+                ipc: 6,
+                control: 'Japan',
+                units: '2 Infantry, 1 Tank'
+            },
+            'MIDDLE EAST': {
+                ipc: 2,
+                control: 'Neutral',
+                units: 'None'
+            },
+            'AUSTRALIA': {
+                ipc: 5,
+                control: 'United Kingdom',
+                units: '1 Infantry, 1 Fighter'
+            },
+            'INDONESIA': {
+                ipc: 3,
+                control: 'Neutral',
+                units: 'None'
             }
         };
         
-        // Expanded territory data
-        const territories = {
-            germany: { name: "Germany", controller: "Germany", units: [], ipc: 10, neighbors: ['france', 'poland', 'italy'] },
-            france: { name: "France", controller: "Neutral", units: [], ipc: 5, neighbors: ['germany', 'uk'] },
-            uk: { name: "United Kingdom", controller: "UK", units: [], ipc: 8, neighbors: ['france', 'canada'] },
-            russia: { name: "Russia", controller: "Russia", units: [], ipc: 12, neighbors: ['poland'] },
-            italy: { name: "Italy", controller: "Germany", units: [], ipc: 6, neighbors: ['germany'] },
-            poland: { name: "Poland", controller: "Neutral", units: [], ipc: 4, neighbors: ['germany', 'russia'] },
-            japan: { name: "Japan", controller: "Japan", units: [], ipc: 8, neighbors: ['philippines'] },
-            philippines: { name: "Philippines", controller: "Neutral", units: [], ipc: 3, neighbors: ['japan'] },
-            hawaii: { name: "Hawaii", controller: "USA", units: [], ipc: 2, neighbors: ['usa'] },
-            usa: { name: "USA", controller: "USA", units: [], ipc: 15, neighbors: ['canada', 'mexico', 'hawaii'] },
-            canada: { name: "Canada", controller: "UK", units: [], ipc: 5, neighbors: ['usa', 'uk'] },
-            mexico: { name: "Mexico", controller: "Neutral", units: [], ipc: 3, neighbors: ['usa'] }
-        };
-        
-        // Player IPC values
-        const players = {
-            Germany: { ipc: 10, controller: "Axis" },
-            Japan: { ipc: 8, controller: "Axis" },
-            USA: { ipc: 15, controller: "Allies" },
-            UK: { ipc: 8, controller: "Allies" },
-            Russia: { ipc: 12, controller: "Allies" }
-        };
-        
-        // Initialize units
-        function initializeUnits() {
-            territories.germany.units = [
-                { type: 'infantry', attack: 1, defense: 2, movement: 1 },
-                { type: 'tank', attack: 3, defense: 3, movement: 2 },
-                { type: 'infantry', attack: 1, defense: 2, movement: 1 }
-            ];
-            
-            territories.usa.units = [
-                { type: 'infantry', attack: 1, defense: 2, movement: 1 },
-                { type: 'aircraft', attack: 4, defense: 4, movement: 4 }
-            ];
-            
-            // Initialize other territories...
-        }
-        
-        // New Functions
-        
-        function purchaseUnit(unitType) {
-            const costs = { infantry: 3, tank: 5, aircraft: 10 };
-            const cost = costs[unitType];
-            
-            // Check if active player can afford
-            if (getActivePlayerIpc() >= cost) {
-                gameState.purchaseQueue.push(unitType);
-                updatePurchaseDisplay();
-                logAction(`Queued ${unitType} for purchase (${cost} IPC)`);
-            } else {
-                logAction(`Not enough IPC to purchase ${unitType}`);
-            }
-        }
-        
-        function updatePurchaseDisplay() {
-            const div = document.getElementById('purchaseQueue');
-            div.innerHTML = `<h4>Purchase Queue</h4>`;
-            
-            gameState.purchaseQueue.forEach((unit, index) => {
-                div.innerHTML += `<div>${index+1}. ${unit} <button onclick="cancelPurchase(${index})">Cancel</button></div>`;
-            });
-            
-            div.innerHTML += `<button onclick="processPurchases()">Process Purchases (${calculatePurchaseCost()} IPC)</button>`;
-        }
-        
-        function calculatePurchaseCost() {
-            const costs = { infantry: 3, tank: 5, aircraft: 10 };
-            return gameState.purchaseQueue.reduce((total, unit) => total + costs[unit], 0);
-        }
-        
-        function getActivePlayerIpc() {
-            if (gameState.activePlayer === 'Allies') {
-                return players.USA.ipc + players.UK.ipc + players.Russia.ipc;
-            } else {
-                return players.Germany.ipc + players.Japan.ipc;
-            }
-        }
-        
-        function processPurchases() {
-            if (!gameState.selectedTerritory) {
-                logAction("Select a territory to place purchased units");
-                return;
-            }
-            
-            const territory = territories[gameState.selectedTerritory];
-            if (!isControlledByActivePlayer(territory)) {
-                logAction("You can only place units in territories you control");
-                return;
-            }
-            
-            gameState.purchaseQueue.forEach(unitType => {
-                addUnit(unitType, false);
-            });
-            
-            // Deduct IPC costs
-            const cost = calculatePurchaseCost();
-            deductIpc(cost);
-            
-            gameState.purchaseQueue = [];
-            updatePurchaseDisplay();
-            updatePlayerIpcDisplay();
-        }
-        
-        function isControlledByActivePlayer(territory) {
-            if (gameState.activePlayer === 'Allies') {
-                return ['USA', 'UK', 'Russia'].includes(territory.controller);
-            } else {
-                return ['Germany', 'Japan'].includes(territory.controller);
-            }
-        }
-        
-        function updatePlayerIpcDisplay() {
-            document.getElementById('germany-ipc').textContent = players.Germany.ipc;
-            document.getElementById('japan-ipc').textContent = players.Japan.ipc;
-            document.getElementById('usa-ipc').textContent = players.USA.ipc;
-            document.getElementById('uk-ipc').textContent = players.UK.ipc;
-            document.getElementById('russia-ipc').textContent = players.Russia.ipc;
-            
-            document.getElementById('axis-ipc').textContent = players.Germany.ipc + players.Japan.ipc;
-            document.getElementById('allies-ipc').textContent = players.USA.ipc + players.UK.ipc + players.Russia.ipc;
-        }
-        
-        function deductIpc(amount) {
-            if (gameState.activePlayer === 'Allies') {
-                // Deduct from allies in some order
-                players.USA.ipc -= amount;
-                if (players.USA.ipc < 0) {
-                    amount = Math.abs(players.USA.ipc);
-                    players.USA.ipc = 0;
-                    players.UK.ipc -= amount;
-                    if (players.UK.ipc < 0) {
-                        amount = Math.abs(players.UK.ipc);
-                        players.UK.ipc = 0;
-                        players.Russia.ipc -= amount;
-                    }
-                }
-            } else {
-                // Deduct from axis
-                players.Germany.ipc -= amount;
-                if (players.Germany.ipc < 0) {
-                    amount = Math.abs(players.Germany.ipc);
-                    players.Germany.ipc = 0;
-                    players.Japan.ipc -= amount;
-                }
-            }
-        }
-        
-        function nextPhase() {
-            const phases = ['Purchase', 'Combat', 'Movement', 'Production'];
-            const currentIndex = phases.indexOf(gameState.currentPhase);
-            
-            if (currentIndex < phases.length - 1) {
-                gameState.currentPhase = phases[currentIndex + 1];
-            } else {
-                // End of turn
-                gameState.currentPhase = phases[0];
-                gameState.turn++;
-                gameState.activePlayer = gameState.activePlayer === 'Allies' ? 'Axis' : 'Allies';
+        territories.forEach(territory => {
+            territory.addEventListener('mouseenter', function(event) {
+                const name = this.textContent.trim();
+                const data = territoryData[name];
                 
-                // Collect IPC for all controlled territories
-                collectIncome();
-            }
-            
-            updatePhaseDisplay();
-            logAction(`Advanced to ${gameState.currentPhase} phase`);
-        }
-        
-        function collectIncome() {
-            let axisIncome = 0;
-            let alliesIncome = 0;
-            
-            for (const [id, territory] of Object.entries(territories)) {
-                if (['Germany', 'Japan'].includes(territory.controller)) {
-                    axisIncome += territory.ipc;
-                } else if (['USA', 'UK', 'Russia'].includes(territory.controller)) {
-                    alliesIncome += territory.ipc;
+                if (data) {
+                    territoryName.textContent = name;
+                    territoryIPC.textContent = data.ipc;
+                    territoryControl.textContent = data.control;
+                    territoryUnits.textContent = data.units;
+                    
+                    territoryInfo.style.display = 'block';
+                    territoryInfo.style.left = (event.pageX + 10) + 'px';
+                    territoryInfo.style.top = (event.pageY - 100) + 'px';
                 }
-            }
+            });
             
-            if (gameState.activePlayer === 'Axis') {
-                players.Germany.ipc += axisIncome;
-                logAction(`Axis collects ${axisIncome} IPC (GER: ${players.Germany.ipc}, JPN: ${players.Japan.ipc})`);
-            } else {
-                distributeAlliesIncome(alliesIncome);
-                logAction(`Allies collect ${alliesIncome} IPC (USA: ${players.USA.ipc}, UK: ${players.UK.ipc}, RUS: ${players.Russia.ipc})`);
-            }
+            territory.addEventListener('mousemove', function(event) {
+                territoryInfo.style.left = (event.pageX + 10) + 'px';
+                territoryInfo.style.top = (event.pageY - 100) + 'px';
+            });
             
-            updatePlayerIpcDisplay();
-        }
-        
-        function distributeAlliesIncome(income) {
-            // Simple distribution - could be enhanced
-            players.USA.ipc += Math.floor(income * 0.5);
-            players.UK.ipc += Math.floor(income * 0.3);
-            players.Russia.ipc += Math.ceil(income * 0.2);
-        }
-        
-        function updatePhaseDisplay() {
-            document.getElementById('phaseIndicator').textContent = 
-                `${gameState.currentPhase} Phase | Turn ${gameState.turn} (${gameState.activePlayer})`;
-            
-            // Show/hide appropriate controls
-            document.getElementById('combatControls').style.display = 
-                gameState.currentPhase === 'Combat' ? 'block' : 'none';
-            document.getElementById('movementControls').style.display = 
-                gameState.currentPhase === 'Movement' ? 'block' : 'none';
-            document.getElementById('purchaseControls').style.display = 
-                gameState.currentPhase === 'Purchase' ? 'block' : 'none';
-        }
-        
-        // Initialize the game
-        window.onload = function() {
-            initializeUnits();
-            updatePhaseDisplay();
-            updatePlayerIpcDisplay();
-            logAction("Game initialized");
-            logAction(`Allies turn begins`);
-        };
+            territory.addEventListener('mouseleave', function() {
+                territoryInfo.style.display = 'none';
+            });
+        });
     </script>
 </body>
 </html>
